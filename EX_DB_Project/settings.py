@@ -14,13 +14,6 @@ from pathlib import Path
 import os
 import dj_database_url # 追加
 
-# settings.py のどこか（例: ファイルの末尾など）
-# !!! 注意: この設定はスーパーユーザー作成後に必ず削除またはコメントアウトしてください !!!
-# !!! 公開リポジトリにこの情報を残さないでください !!!
-SUPERUSER_USERNAME = os.environ.get('wata')
-SUPERUSER_EMAIL = os.environ.get('wata.submail@gmail.com')
-SUPERUSER_PASSWORD = os.environ.get('wata20250713')
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
