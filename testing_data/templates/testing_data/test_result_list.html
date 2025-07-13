@@ -1,20 +1,61 @@
-
 {% extends 'base.html' %}
 
 {% block title %}試験結果一覧{% endblock %}
 
 {% block content %}
+    <h1 class="mb-4">試験結果一覧</h1> {# H1タグがリストページから欠落していたので追加 #}
+    <div class="row mb-3"> {# 検索・フィルタリング・追加ボタンの行が欠落していたので追加 #}
+        <div class="col-md-6">
+            <form method="GET" action="{% url 'test_result_list' %}" class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="配合名または日付を検索" aria-label="Search" name="q" value="{{ query|default:'' }}">
+                <button class="btn btn-outline-success" type="submit">検索</button>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <form method="GET" action="{% url 'test_result_list' %}" class="d-flex">
+                <select class="form-select me-2" name="mix_name" onchange="this.form.submit()">
+                    <option value="">全ての配合名</option>
+                    {% for name in available_mix_names %}
+                        <option value="{{ name }}" {% if name == filter_mix_name %}selected{% endif %}>{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+        <div class="col-md-3 text-end">
+             <a href="{% url 'add_test_result' %}" class="btn btn-primary">新しい試験データを追加</a>
+        </div>
+    </div>
+
+
     <div class="table-responsive">
         <table class="table table-striped table-hover">
-            <tbody>
-                {% for result in page_obj %} {# page_obj をループする #}
+            <thead> {# テーブルヘッダーが欠落していたので追加 #}
                 <tr>
+                    <th><a href="{% url 'test_result_list' %}?sort_by={% if sort_by == 'test_date' %}-test_date{% else %}test_date{% endif %}&q={{ query|default:'' }}&mix_name={{ filter_mix_name|default:'' %}">試験日 {% if sort_by == 'test_date' %}▲{% elif sort_by == '-test_date' %}▼{% endif %}</a></th>
+                    <th><a href="{% url 'test_result_list' %}?sort_by={% if sort_by == 'mix_name' %}-mix_name{% else %}mix_name{% endif %}&q={{ query|default:'' }}&mix_name={{ filter_mix_name|default:'' %}">配合名 {% if sort_by == 'mix_name' %}▲{% elif sort_by == '-mix_name' %}▼{% endif %}</a></th>
+                    <th>水セメント比</th>
+                    <th>s/a</th>
+                    <th>配合空気量(%)</th>
+                    <th>スランプ(cm)</th>
+                    <th>空気量(cm)</th>
+                    </tr>
+            </thead>
+            <tbody>
+                {% for result in page_obj %}
+                <tr>
+                    <td>{{ result.test_date }}</td>
+                    <td>{{ result.mix_name }}</td>
+                    <td>{{ result.water_cement_ratio }}</td>
+                    <td>{{ result.sand_aggregate_ratio }}</td>
+                    <td>{{ result.air_content_percent }}</td>
+                    <td>{{ result.slump|default:"-" }}</td>
+                    <td>{{ result.air_content_result:"-" }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    {% if not page_obj %} {# page_obj が空かを確認 #}
+    {% if not page_obj %}
     <p>まだ試験結果がありません。</p>
     {% endif %}
 
