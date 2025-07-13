@@ -49,7 +49,7 @@
                     <td>{{ result.sand_aggregate_ratio }}</td>
                     <td>{{ result.air_content_percent }}</td>
                     <td>{{ result.slump|default:"-" }}</td>
-                    <td>{{ result.air_content_result:"-" }}</td>
+                    <td>{{ result.air_content_result|default:"-" }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
