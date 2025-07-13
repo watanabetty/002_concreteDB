@@ -1,14 +1,14 @@
-asgiref @ file:///C:/b/abs_ae1n0p_8_w/croot/asgiref_1724072476516/work
+asgiref==3.8.1 # 最新バージョンを使う場合は asgiref のみでもOK
 diff-match-patch==20241021
 dj-database-url==3.0.1
-Django @ file:///C:/b/abs_732pccxzov/croot/django_1745263601709/work
+Django==5.2
 django-import-export==4.3.8
 et-xmlfile==1.1.0
 gunicorn==23.0.0
-openpyxl @ file:///C:/b/abs_6cdczthntz/croot/openpyxl_1736371239628/work
+openpyxl==3.1.5
 packaging==25.0
 psycopg2-binary==2.9.10
-sqlparse @ file:///C:/b/abs_68npyz0s6_/croot/sqlparse_1734704476369/work
+sqlparse==0.5.2
 tablib==3.8.0
-typing_extensions @ file:///C:/b/abs_0ffjxtihug/croot/typing_extensions_1734714875646/work
+typing_extensions==4.12.2
 whitenoise==6.9.0
