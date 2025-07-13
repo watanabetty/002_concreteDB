@@ -1,0 +1,28 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.idea/  # PyCharmなどのIDE設定ファイル
+
+# Anaconda / Virtual environments
+.conda/
+conda-meta/
+# *.egg-info/
+# build/
+# dist/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Django specific
+/staticfiles/ # collectstaticで生成されるディレクトリ
+/media/       # ユーザーがアップロードするファイル用（もしあれば）
+db.sqlite3    # ローカルのSQLiteデータベースファイル
+
+# Render specific
+# 例えば、Renderにデプロイするために特定のファイルを除外したい場合に追加
