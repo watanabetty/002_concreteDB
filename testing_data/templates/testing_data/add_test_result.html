@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>試験データ入力</title>
-</head>
-<body>
+{% extends 'base.html' %} {# 追加 #}
+
+{% block title %}試験データ入力{% endblock %} {# 追加 #}
+
+{% block content %} {# 追加 #}
     <h1>新しい試験データを入力</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">保存</button>
+        <button type="submit" class="btn btn-primary">保存</button> {# Bootstrapクラスを追加 #}
     </form>
-    <p><a href="{% url 'test_result_list' %}">試験結果一覧へ</a></p>
-</body>
-</html>
+    <p><a href="{% url 'test_result_list' %}" class="btn btn-secondary mt-3">試験結果一覧へ</a></p> {# Bootstrapクラスを追加 #}
+{% endblock %} {# 追加 #}
